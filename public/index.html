@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ohr-Jokes</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+        background-color: #363a4b;
+      }
+
+      img {
+        margin-top: 15vh;
+        width: 200px;
+        height: 200px;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        color: #fff;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+      }
+
+      button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #85a5ff;
+        color: #363a4b;
+        font-size: 1rem;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        cursor: pointer;
+        transition: color 0.15s, background-color 0.15s;
+      }
+
+      button:hover {
+        background-color: #afc4ff;
+        color: #565c79;
+      }
+
+      select {
+        margin-top: 10px;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #85a5ff;
+        color: #363a4b;
+        font-size: 0.8rem;
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        cursor: pointer;
+        transition: color 0.15s, background-color 0.15s;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="ohr.png" alt="" />
+    <h1 id="word">Wohrt-Witze</h1>
+    <button onclick="randomWord()">Zufälliges Wohrt</button>
+    <select id="langSelect"></select>
+
+    <script>
+      (async () => {
+        const response = await fetch("/languages");
+        const languages = await response.json();
+        for (let lang of languages) {
+          const option = document.createElement("option");
+          option.value = lang;
+          option.innerText = lang;
+          if (lang == "german") option.selected = true;
+
+          document.getElementById("langSelect").appendChild(option);
+        }
+      })();
+
+      async function randomWord() {
+        const lang = document.getElementById("langSelect").value;
+        const response = await fetch(`/word/${lang}`);
+        const word = await response.text();
+        document.getElementById("word").innerText = word;
+      }
+    </script>
+  </body>
+</html>

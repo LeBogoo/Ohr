@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "name": "ohr-witze",
+  "version": "1.0.0",
+  "description": "Generates random words with the german word \"Ohr\" or in english \"Ear\" in it.",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jokes",
+    "comedy"
+  ],
+  "author": "LeBogo",
+  "license": "ISC"
+}
