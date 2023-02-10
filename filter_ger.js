@@ -23,6 +23,7 @@ const words = fs
       !word.endsWith("ts") &&
       !word.endsWith("e") &&
       !word.endsWith("s") &&
+      !word.endsWith("rn") &&
       !word.endsWith("isch")
     );
   });
